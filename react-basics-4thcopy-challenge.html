@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+        .para{
+            font-size: 24px;
+            font-weight: 500;
+            font-family: Arial;
+        }
+        .input-box{
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            row-gap: 10px;
+            margin-bottom:20px;
+            align-items: start;
+        }
+        .box{
+            padding: 7px 20px;
+            border-width: 1px;
+            border-radius: 5px;
+        }
+        .button-div button{
+            background-color: rgb(0, 123, 255);
+            padding: 10px 20px;
+            border:none;
+            border-radius: 3px;
+            margin-right:10px ;
+            font-size: 16px;
+            color: white;
+        }
+        .input-box .password-box .hide-button{
+            margin-left: 10px;
+        }
+        
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/dayjs/dayjs.min.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        
+        function App(){
+            const [showPassword,setShowPassword]=React.useState(true)
+            function showOrHidePassword(){
+             setShowPassword(!showPassword);
+            }
+
+            const [time,setTime]=React.useState(dayjs().format('HH:mm:ss'))
+            console.log(time)
+           
+            return (
+                <>
+                    <p className="para">Hello, welcome to my website</p>
+                    <div className="input-box">
+                        <input type="text" name="" id="" placeholder="Email" className="box"/>
+                        <div className="password-box">
+                            <input type={showPassword?"password":"text"} name="" id="" placeholder="Password" className="box"/>
+                            <button className="hide-button" 
+                                onClick={showOrHidePassword}
+                            >{showPassword?"show":"hide"}</button>
+                        </div>
+                    </div>
+                    <div className="button-div">
+                        <button>Login</button>
+                        <button>Sign up</button>
+                    </div>
+                </>
+            )
+        }
+       
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>

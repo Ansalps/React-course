@@ -3,6 +3,21 @@
   <head>
     <title>React Basics</title>
   </head>
+  <style>
+    body{
+        margin: 0;
+    }
+    .app-container button{
+        background-color: rgb(25,135,84);
+    }
+    .app-container{
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+        background-color: rgb(222, 222, 222);
+    }
+  </style>
   <body>
     <div class="js-container"></div>
 
@@ -11,9 +26,26 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-       
-        function Counter({count,setCount}){
-            
+
+        function App(){
+            const counterRef=React.useRef(null);
+
+            const [count,setCount]=React.useState({
+                count:0,
+                time: 'times'
+            });
+
+            React.useEffect(()=>{
+                const buttonElem= counterRef.current;
+                if (buttonElem){
+                    setInterval(()=>{
+                    buttonElem.click();
+                },1000)
+                    
+                }
+            },[])
+
+
             function increaseCount(){
                 setCount({
                     count:count.count+1,
@@ -26,21 +58,7 @@
                     })
                 }
             }
-            return (
-                <>
-                    <button onClick={increaseCount}>
-                        Clicked {count.count} {count.time}
-                    </button>
-                </>
-            );
-        }
 
-
-        function App(){
-            const [count,setCount]=React.useState({
-                count:0,
-                time: 'times'
-            });
             function ResetCount(){
                 setCount({
                     count:0,
@@ -48,11 +66,13 @@
                 })
             }
             return (
-                <>
-                    <Counter count={count} setCount={setCount}/>
-                    <Counter count={count} setCount={setCount}/>
+                <div className="app-container">
+                    <button onClick={increaseCount} ref={counterRef}>
+                        Clicked {count.count} {count.time}
+                    </button>
                     <button onClick={ResetCount}>Reset</button>
-                </>
+                    <button>Auto Click</button>
+                </div>
             );
         }
 
