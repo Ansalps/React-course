@@ -1,0 +1,30 @@
+.para{
+    font-size: 24px;
+    font-weight: 500;
+    font-family: Arial;
+}
+.input-box{
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    row-gap: 10px;
+    margin-bottom:20px;
+    align-items: start;
+}
+.box{
+    padding: 7px 20px;
+    border-width: 1px;
+    border-radius: 5px;
+}
+.button-div button{
+    background-color: rgb(0, 123, 255);
+    padding: 10px 20px;
+    border:none;
+    border-radius: 3px;
+    margin-right:10px ;
+    font-size: 16px;
+    color: white;
+}
+.input-box .password-box .hide-button{
+    margin-left: 10px;
+}

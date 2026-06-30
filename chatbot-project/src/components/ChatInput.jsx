@@ -1,6 +1,9 @@
 import { useState} from 'react'
 import {Chatbot} from 'supersimpledev'
+import dayjs from 'dayjs';
 import './ChatInput.css'
+import LoadingSpinner from '../assets/loading-spinner.gif';
+
 
 export function ChatInput({chatMessages,setChatMessages}){
     
@@ -25,7 +28,7 @@ export function ChatInput({chatMessages,setChatMessages}){
     async function sendMessage(){
         const message1= (
             <img
-                src="../assets/loading-spinner.gif"
+                src={LoadingSpinner}
                 alt="Loading..."
                 width="30"
                 className="loading-image"
@@ -44,7 +47,8 @@ export function ChatInput({chatMessages,setChatMessages}){
             {
                 message:inputText,
                 sender:'user',
-                id:crypto.randomUUID()
+                id:crypto.randomUUID(),
+                time: dayjs().valueOf()
             }
         ]
         
@@ -53,7 +57,8 @@ export function ChatInput({chatMessages,setChatMessages}){
             {
                 message:message1,
                 sender:'robot',
-                id:crypto.randomUUID()    
+                id:crypto.randomUUID(),
+                time: dayjs().valueOf()    
             }
         ])
         
@@ -65,7 +70,8 @@ export function ChatInput({chatMessages,setChatMessages}){
             {
                 message:response,
                 sender:'robot',
-                id:crypto.randomUUID()    
+                id:crypto.randomUUID(),
+                time: dayjs().valueOf()    
             }
         ])
 
@@ -73,6 +79,9 @@ export function ChatInput({chatMessages,setChatMessages}){
 
     }
 
+    function clearMessages(){
+        setChatMessages([]);
+    }
     return (
         <div className="chat-input-container">
             <input 
@@ -87,6 +96,9 @@ export function ChatInput({chatMessages,setChatMessages}){
                 onClick={sendMessage}
                 className="send-button"
             >Send</button>
+            <button
+                onClick={clearMessages}
+            >Clear</button>
         </div>
     );
 }
