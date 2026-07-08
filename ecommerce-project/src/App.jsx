@@ -12,13 +12,12 @@ function App() {
   
 const [cart, setCart] = useState([]);
 useEffect(()=>{
-  axios.get('http://localhost:3000/api/cart-items?expand=product')
-            .then((response)=>{
-                setCart(response.data);
-            })
-            .catch((error) => {
-              console.error("Error fetching cart data:", error);
-            });
+  const fetchAppData=async ()=>{
+    const response = await axios.get('http://localhost:3000/api/cart-items?expand=product')
+  setCart(response.data);
+  }
+  
+  fetchAppData();          
 },[])
   return (
     <>

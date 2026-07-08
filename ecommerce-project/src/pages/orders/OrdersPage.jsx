@@ -5,7 +5,7 @@ import { useState, useEffect, Fragment } from "react";
 import "./OrdersPage.css";
 import { Header } from "../../components/Header";
 import { Link } from "react-router";
-import BuyAgain from "../assets/images/icons/buy-again.png";
+import BuyAgain from "../../assets/images/icons/buy-again.png";
 
 export function OrdersPage({ cart }) {
   const [orders, setOrders] = useState([]);
