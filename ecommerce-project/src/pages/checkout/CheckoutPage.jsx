@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { CheckoutHeader } from "./CheckoutHeader";
 import "./CheckoutPage.css";
 
-export function CheckoutPage({ cart }) {
+export function CheckoutPage({ cart,loadCart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
 
@@ -16,16 +16,8 @@ export function CheckoutPage({ cart }) {
       response = await axios.get("/api/payment-summary")
       setPaymentSummary(response.data);
     }
-   
     fetchCheckoutData();
-
-    // const fetchPaymentSummary = async () => {
-    //   const 
-    // }
-
-    // fetchPaymentSummary();
-   
-  }, []);
+  }, [cart]);
   return (
     <>
       <title>Checkout</title>
@@ -39,7 +31,7 @@ export function CheckoutPage({ cart }) {
 
         <div className="checkout-grid">
           
-          <OrderSummary cart={cart} deliveryOptions={deliveryOptions} />
+          <OrderSummary cart={cart} deliveryOptions={deliveryOptions} loadCart={loadCart}/>
 
           <PaymentSummary paymentSummary={paymentSummary} />
         </div>
